@@ -7,7 +7,13 @@ node {
    stage('Build') {
       sh "'${mvnHome}/bin/mvn' -DskipTests clean package"
    }
-   stage('Notify') {
-      echo 'Sending email to developers'
+   if(env.BRANCH_NAME.equals("develop")){
+      stage('Notify') {
+         echo 'Sending email to developers...'
+      }
+   }else if(env.BRANCH_NAME.equals("master")){
+      stage('Deploy') {
+         echo 'Starting deploy wihth ansible...'
+      }
    }
 }
