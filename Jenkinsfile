@@ -11,6 +11,9 @@ node {
       stage('Notify') {
          echo 'Sending email to developers...'
       }
+      stage('SMS') {
+         echo 'Sending sms to developers...'
+      }
    }else if(env.BRANCH_NAME.equals("master")){
       stage('Deploy') {
          echo 'Starting deploy wihth ansible...'
